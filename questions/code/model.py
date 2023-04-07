@@ -24,8 +24,8 @@ class Model:
         #           [1, number_classes]
         # Fill in the below
         # functions with the correct shapes for both parameters
-        self.W = np.random.rand()
-        self.b = np.zeros()
+        self.W = np.random.rand(self.input_size, self.num_classes)
+        self.b = np.zeros((1, self.num_classes))
 
     def forward_pass(self, inputs):
         """
@@ -60,11 +60,13 @@ class Model:
         :return: probabilities for each per image
         """
         # TODO: First, work out the size of `inputs`, `self.W`, `self.b`
+        logits = inputs @ self.W + self.b
+        logits = logits - np.amax(logits)
 
         # TODO: Calculate response for each logits
 
         # TODO: Obtain probabilities by using softmax on the logits
-        probabilities = None
+        probabilities = np.exp(logits)/np.sum(np.exp(logits)) 
         return probabilities
 
     @staticmethod
@@ -84,7 +86,10 @@ class Model:
         # TODO: compute loss value
         # Note that while probabilities is [batch_size, num_classes], in our
         # problem, batch_size = 1, so you will have to index into the 0th element
-        loss = None
+        probabilities = probabilities + 1e-10
+        ls = np.arange(10)
+        truth = np.where(ls == gt_label, 1, 0)
+        loss = -np.dot(truth, np.log(probabilities[0]))
         return loss
 
     @staticmethod
@@ -112,7 +117,8 @@ class Model:
         # TODO: Back propagation: use gradient descent to update parameters
 
         # TODO: Reshape train image data to be matrix, dimension [img.size, 1]
-        gradW, gradB = None, None
+        img = img.reshape(img.size, 1)
+        gradW, gradB = img * (probabilities - (gt_label == np.argmax(probabilities))), probabilities - (gt_label == np.argmax(probabilities))
         return gradW, gradB
 
     def gradient_descent(self, gradW, gradB):
@@ -126,7 +132,8 @@ class Model:
         :return: None
         """
         # TODO: Modify parameters with summed updates
-        pass
+        self.W = self.W - self.learning_rate * gradW
+        self.b = self.b - self.learning_rate * gradB
 
     def train_nn(self):
         """
@@ -155,16 +162,18 @@ class Model:
 
                 # TODO: 1. Calculate probabilities from calling forward pass
                 #       on img
-                probabilities = None
+                probabilities = self.forward_pass(img)
 
                 # TODO: 2. Calculate the loss from probabilities, loss_sum =
                 #       loss_sum + your_loss_over_all_classes
-                loss = None
+                loss = self.loss(probabilities, gt_label)
+                loss_sum += loss
 
                 # TODO: 3. Calculate gradW, gradB from back propagation
-                gradW, gradB = None
+                gradW, gradB = self.back_propagation(img, probabilities, gt_label)
 
                 # TODO: 4. Update self.W and self.B with gradient descent
+                self.gradient_descent(gradW, gradB)
                 
                 
             # to calculate acuuracy for each epoch on the testing set

@@ -39,7 +39,7 @@ parser.add_argument("--data",
 ARGS = parser.parse_args()
 
 
-def main():
+def main(): 
     datasets = {"mnist", "scenerec"}
     mode = {"nn", "nn+svm"}
 
