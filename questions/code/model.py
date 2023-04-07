@@ -87,7 +87,7 @@ class Model:
         # Note that while probabilities is [batch_size, num_classes], in our
         # problem, batch_size = 1, so you will have to index into the 0th element
         probabilities = probabilities + 1e-10
-        ls = np.arange(10)
+        ls = np.arange(len(probabilities))
         truth = np.where(ls == gt_label, 1, 0)
         loss = -np.dot(truth, np.log(probabilities[0]))
         return loss
@@ -118,7 +118,9 @@ class Model:
 
         # TODO: Reshape train image data to be matrix, dimension [img.size, 1]
         img = img.reshape(img.size, 1)
-        gradW, gradB = img * (probabilities - (gt_label == np.argmax(probabilities))), probabilities - (gt_label == np.argmax(probabilities))
+        ls = np.arange(len(probabilities))
+        truth = np.where(ls == gt_label, 1, 0)
+        gradW, gradB = img * (probabilities - truth), probabilities - truth
         return gradW, gradB
 
     def gradient_descent(self, gradW, gradB):
