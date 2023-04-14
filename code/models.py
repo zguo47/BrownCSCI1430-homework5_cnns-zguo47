@@ -57,17 +57,23 @@ class YourModel(tf.keras.Model):
 
         self.architecture = [
               ## Add layers here separated by commas.
-              Conv2D(32, (7, 7), activation='leaky_relu', strides=(2, 2), dtype= 'float32'),
+              Conv2D(32, (3, 3), 1, padding="same",
+                   activation='leaky_relu'),
+              Conv2D(32, (3, 3), 1, padding="same",
+                   activation='leaky_relu'),
               MaxPool2D((2, 2), 2),
-              Conv2D(64, (4, 4), activation='leaky_relu',  strides=(2, 2), dtype = 'float32'),
-              Conv2D(128, (7,7), activation='leaky_relu', dtype = 'float32'),
+              Conv2D(64, (3, 3), 1, padding="same", activation='leaky_relu'),
+              Conv2D(64, (3, 3), 1, padding="same", activation='leaky_relu'),
+              MaxPool2D((2, 2), 2),
+              Conv2D(128, (5, 5), 1, padding="same", activation='leaky_relu'),
+              Conv2D(128, (5, 5), 1, padding="same", activation='leaky_relu'),
               MaxPool2D((2, 2), 2),
               Flatten(),
-              Dense(64, activation='sigmoid', dtype = 'float32'),
-              # Dropout(0.1, dtype = 'float32'), 
-              Dense(32, activation='sigmoid', dtype = 'float32'),
+              Dense(64, activation='sigmoid'),
               Dropout(0.1, dtype = 'float32'), 
-              Dense(15, activation='softmax', dtype = 'float32')
+              Dense(32, activation='sigmoid'),
+              Dropout(0.1, dtype = 'float32'), 
+              Dense(15, activation='softmax')
         ]
 
     def call(self, x):
