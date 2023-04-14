@@ -103,8 +103,8 @@ class Datasets():
         #
         # ==========================================================
 
-        # self.mean = np.mean(data_sample, axis=0)
-        # self.std = np.std(data_sample, axis=0)
+        self.mean = np.mean(data_sample, axis=0)
+        self.std = np.std(data_sample, axis=0)
 
         # ==========================================================
 
