@@ -57,14 +57,14 @@ class YourModel(tf.keras.Model):
 
         self.architecture = [
               ## Add layers here separated by commas.
-              Conv2D(32, (3, 3), activation='leaky_relu', strides=(2, 2), padding='same', dtype= 'float32'),
+              Conv2D(32, (3, 3), activation='leaky_relu', dtype= 'float32'),
               MaxPool2D((2, 2), 2),
-              Conv2D(64, (5,5), activation='leaky_relu', padding='same', dtype = 'float32'),
-              MaxPool2D((2,2), 2),
-              Conv2D(128, (7,7), activation='leaky_relu', padding='same', dtype = 'float32'),
-              MaxPool2D((2,2), 2),
+              # Conv2D(64, (5,5), activation='leaky_relu',  dtype = 'float32'),
+              # MaxPool2D((2,2), 2),
+              # Conv2D(128, (7,7), activation='leaky_relu', dtype = 'float32'),
+              # MaxPool2D((2,2), 2),
               Flatten(),
-              Dense(200, activation='leaky_relu', dtype = 'float32'),
+              Dense(64, activation='leaky_relu', dtype = 'float32'),
               Dropout(0.1, dtype = 'float32'), 
               Dense(32, activation='sigmoid', dtype = 'float32'),
               Dropout(0.1, dtype = 'float32'), 
