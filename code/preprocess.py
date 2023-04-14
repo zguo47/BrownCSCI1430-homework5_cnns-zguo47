@@ -212,7 +212,7 @@ class Datasets():
                 rotation_range=20,
                 width_shift_range=0.2,
                 height_shift_range=0.2,
-                # brightness_range=(0.1, 0.1)
+                zoom_range=0.1,
                 preprocessing_function=self.preprocess_fn)
 
             # ============================================================

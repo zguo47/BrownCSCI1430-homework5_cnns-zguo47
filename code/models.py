@@ -20,7 +20,7 @@ class YourModel(tf.keras.Model):
         # TASK 1
         # TODO: Select an optimizer for your network (see the documentation
         #       for tf.keras.optimizers)
-        self.optimizer = tf.keras.optimizers.Adam(0.0001)
+        self.optimizer = tf.keras.optimizers.Adam(0.00015)
 
         # TASK 1
         # TODO: Build your own convolutional neural network with a 
@@ -69,6 +69,8 @@ class YourModel(tf.keras.Model):
               # Conv2D(128, (5, 5), 1, padding="same", activation='leaky_relu'),
               MaxPool2D(),
               Conv2D(256, (3, 3), 1, padding="same", activation='leaky_relu'),
+              MaxPool2D(),
+              Conv2D(512, (3, 3), 1, padding="same", activation='leaky_relu'),
               MaxPool2D(),
               Flatten(),
               Dense(128, activation='relu'),
