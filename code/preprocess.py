@@ -136,7 +136,7 @@ class Datasets():
         #       the standardization.
         # =============================================================
 
-        # img = (img - self.mean) / self.std     # replace this code
+        img = (img - self.mean) / self.std     # replace this code
 
         # =============================================================
 
