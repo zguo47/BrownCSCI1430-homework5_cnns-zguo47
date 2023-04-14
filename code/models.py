@@ -73,7 +73,7 @@ class YourModel(tf.keras.Model):
               Flatten(),
               # Dense(64, activation='relu'),
               # Dropout(0.1), 
-              Dense(64, activation='relu'),
+              Dense(64, activation='sigmoid'),
               Dropout(0.1), 
               Dense(15, activation='softmax')
         
