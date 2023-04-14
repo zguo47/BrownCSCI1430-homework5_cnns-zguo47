@@ -65,15 +65,15 @@ class YourModel(tf.keras.Model):
               Conv2D(64, (3, 3), 1, padding="same", activation='leaky_relu'),
               # Conv2D(64, (3, 3), 1, padding="same", activation='leaky_relu'),
               MaxPool2D((2, 2), 1),
-              Conv2D(128, (5, 5), 1, padding="same", activation='leaky_relu'),
+              Conv2D(128, (3, 3), 1, padding="same", activation='leaky_relu'),
               # Conv2D(128, (5, 5), 1, padding="same", activation='leaky_relu'),
               MaxPool2D((2, 2), 1),
-              Conv2D(256, (5, 5), 1, padding="same", activation='leaky_relu'),
+              Conv2D(256, (3, 3), 1, padding="same", activation='leaky_relu'),
               MaxPool2D((2, 2), 1),
               Flatten(),
               # Dense(64, activation='relu'),
               # Dropout(0.1), 
-              Dense(32, activation='relu'),
+              Dense(64, activation='relu'),
               Dropout(0.1), 
               Dense(15, activation='softmax')
         
