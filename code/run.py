@@ -176,7 +176,7 @@ def train(model, datasets, checkpoint_path, logs_path, init_epoch):
 def test(model, test_data):
     """ Testing routine. """
 
-    # Run model on test set
+    # Run model on test set 
     model.evaluate(
         x=test_data,
         verbose=1,

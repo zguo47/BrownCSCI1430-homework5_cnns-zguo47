@@ -20,6 +20,7 @@ class YourModel(tf.keras.Model):
         # TASK 1
         # TODO: Select an optimizer for your network (see the documentation
         #       for tf.keras.optimizers)
+        self.optimizer = tf.keras.optimizers.Adam(0.001)
 
         # TASK 1
         # TODO: Build your own convolutional neural network with a 
@@ -36,7 +37,7 @@ class YourModel(tf.keras.Model):
         #       Because this is a 15-scene classification task,
         #       the output dimension of the network must be 15. That is,
         #       passing a tensor of shape [batch_size, img_size, img_size, 1]
-        #       into the network will produce an output of shape
+        
         #       [batch_size, 15].
         #
         #       Note 3: 
@@ -56,6 +57,18 @@ class YourModel(tf.keras.Model):
 
         self.architecture = [
               ## Add layers here separated by commas.
+              Conv2D(32, (3, 3), activation='leaky_relu', strides=(2, 2), padding='same', dtype= 'float32'),
+              # MaxPool2D((2, 2), 2),
+              # Conv2D(64, (5,5), activation='leaky_relu', padding='same', dtype = 'float32'),
+              # MaxPool2D((2,2), 2),
+              # Conv2D(128, (7,7), activation='leaky_relu', padding='same', dtype = 'float32'),
+              # MaxPool2D((2,2), 2),
+              Flatten(),
+              # Dense(200, activation='leaky_relu', dtype = 'float32'),
+              # Dropout(0.1, dtype = 'float32'), 
+              Dense(32, activation='sigmoid', dtype = 'float32'),
+              Dropout(0.1, dtype = 'float32'), 
+              Dense(15, activation='softmax', dtype = 'float32')
         ]
 
     def call(self, x):
@@ -73,8 +86,8 @@ class YourModel(tf.keras.Model):
         # TASK 1
         # TODO: Select a loss function for your network 
         #       (see the documentation for tf.keras.losses)
-
-        pass
+        loss = tf.keras.losses.SparseCategoricalCrossentropy()
+        return loss(labels, predictions)
 
 
 class VGGModel(tf.keras.Model):
@@ -85,7 +98,7 @@ class VGGModel(tf.keras.Model):
         # TODO: Select an optimizer for your network (see the documentation
         #       for tf.keras.optimizers)
 
-        self.optimizer = None
+        self.optimizer = tf.keras.optimizers.Adam(0.001)
 
         # Don't change the below:
 
@@ -159,4 +172,4 @@ class VGGModel(tf.keras.Model):
         #       Read the documentation carefully, some might not work with our 
         #       model!
 
-        pass
+        return tf.keras.losses.SparseCategoricalCrossentropy(labels, predictions)
