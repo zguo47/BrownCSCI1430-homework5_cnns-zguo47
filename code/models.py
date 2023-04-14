@@ -71,8 +71,8 @@ class YourModel(tf.keras.Model):
               Conv2D(256, (5, 5), 1, padding="same", activation='leaky_relu'),
               MaxPool2D((2, 2), 1),
               Flatten(),
-              Dense(64, activation='relu'),
-              Dropout(0.1), 
+              # Dense(64, activation='relu'),
+              # Dropout(0.1), 
               Dense(32, activation='relu'),
               Dropout(0.1), 
               Dense(15, activation='softmax')
