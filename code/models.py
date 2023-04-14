@@ -75,7 +75,6 @@ class YourModel(tf.keras.Model):
               # Dropout(0.1, dtype = 'float32'), 
               # Dense(15, activation='softmax')
 
-              
             # Block 1
             Conv2D(64, 3, 1, padding="same",
                    activation="relu", name="block1_conv1"),
@@ -111,7 +110,14 @@ class YourModel(tf.keras.Model):
                    activation="relu", name="block5_conv2"),
             Conv2D(512, 3, 1, padding="same",
                    activation="relu", name="block5_conv3"),
-            MaxPool2D(2, name="block5_pool")
+            MaxPool2D(2, name="block5_pool"),
+
+            Flatten(),
+            Dense(512, activation='sigmoid'),
+            Dropout(0.1, dtype = 'float32'), 
+            Dense(256, activation='sigmoid'),
+            Dropout(0.1, dtype = 'float32'), 
+            Dense(15, activation='softmax')
         
         ]
 
