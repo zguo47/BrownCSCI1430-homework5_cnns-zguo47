@@ -20,7 +20,7 @@ class YourModel(tf.keras.Model):
         # TASK 1
         # TODO: Select an optimizer for your network (see the documentation
         #       for tf.keras.optimizers)
-        self.optimizer = tf.keras.optimizers.Adam(0.001)
+        self.optimizer = tf.keras.optimizers.Adam(0.0001)
 
         # TASK 1
         # TODO: Build your own convolutional neural network with a 
