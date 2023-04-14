@@ -103,8 +103,8 @@ class Datasets():
         #
         # ==========================================================
 
-        # self.mean = your code
-        # self.std = your code
+        self.mean = np.mean(data_sample, axis=0)
+        self.std = np.std(data_sample, axis=0)
 
         # ==========================================================
 
@@ -136,7 +136,7 @@ class Datasets():
         #       the standardization.
         # =============================================================
 
-        img = img      # replace this code
+        img = (img - self.mean) / self.std     # replace this code
 
         # =============================================================
 

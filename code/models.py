@@ -20,7 +20,7 @@ class YourModel(tf.keras.Model):
         # TASK 1
         # TODO: Select an optimizer for your network (see the documentation
         #       for tf.keras.optimizers)
-        self.optimizer = tf.keras.optimizers.Adam(0.1)
+        self.optimizer = tf.keras.optimizers.Adam(0.001)
 
         # TASK 1
         # TODO: Build your own convolutional neural network with a 
@@ -57,15 +57,16 @@ class YourModel(tf.keras.Model):
 
         self.architecture = [
               ## Add layers here separated by commas.
-              Conv2D(64, (7, 7), activation='leaky_relu', strides=(2, 2), dtype= 'float32'),
+              Conv2D(32, (7, 7), activation='leaky_relu', strides=(2, 2), dtype= 'float32'),
               MaxPool2D((2, 2), 2),
               Conv2D(64, (4, 4), activation='leaky_relu',  strides=(2, 2), dtype = 'float32'),
               Conv2D(128, (7,7), activation='leaky_relu', dtype = 'float32'),
+              MaxPool2D((2, 2), 2),
               Flatten(),
-              # Dense(64, activation='leaky_relu', dtype = 'float32'),
+              Dense(64, activation='sigmoid', dtype = 'float32'),
               # Dropout(0.1, dtype = 'float32'), 
-              Dense(32, activation='leaky_relu', dtype = 'float32'),
-              # Dropout(0.1, dtype = 'float32'), 
+              Dense(32, activation='sigmoid', dtype = 'float32'),
+              Dropout(0.1, dtype = 'float32'), 
               Dense(15, activation='softmax', dtype = 'float32')
         ]
 
