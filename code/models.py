@@ -193,4 +193,5 @@ class VGGModel(tf.keras.Model):
         #       Read the documentation carefully, some might not work with our 
         #       model!
 
-        return tf.keras.losses.SparseCategoricalCrossentropy(labels, predictions)
+        loss = tf.keras.losses.SparseCategoricalCrossentropy()
+        return loss(labels, predictions)
