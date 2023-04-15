@@ -108,7 +108,7 @@ class VGGModel(tf.keras.Model):
         # TODO: Select an optimizer for your network (see the documentation
         #       for tf.keras.optimizers)
 
-        self.optimizer = tf.keras.optimizers.Adam(0.001)
+        self.optimizer = tf.keras.optimizers.Adam(0.0001)
 
         # Don't change the below:
 
