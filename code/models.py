@@ -160,9 +160,9 @@ class VGGModel(tf.keras.Model):
 
         self.head = [
               Flatten(),
-              Dense(2000, activation='relu'),
+              Dense(800, activation='relu'),
               Dropout(0.1), 
-              Dense(2000, activation='relu'),
+              Dense(800, activation='relu'),
               Dropout(0.1), 
               Dense(15, activation='softmax')
         ]
