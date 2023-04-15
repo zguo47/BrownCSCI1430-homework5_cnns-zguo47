@@ -108,7 +108,7 @@ class VGGModel(tf.keras.Model):
         # TODO: Select an optimizer for your network (see the documentation
         #       for tf.keras.optimizers)
 
-        self.optimizer = tf.keras.optimizers.Adam(0.0001)
+        self.optimizer = tf.keras.optimizers.Adam(0.00001)
 
         # Don't change the below:
 
@@ -160,9 +160,9 @@ class VGGModel(tf.keras.Model):
 
         self.head = [
               Flatten(),
-              Dense(200, activation='relu'),
+              Dense(2000, activation='relu'),
               Dropout(0.1), 
-              Dense(100, activation='sigmoid'),
+              Dense(2000, activation='relu'),
               Dropout(0.1), 
               Dense(15, activation='softmax')
         ]
