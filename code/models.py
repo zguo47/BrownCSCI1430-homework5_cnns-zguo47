@@ -158,7 +158,18 @@ class VGGModel(tf.keras.Model):
 
         # TODO: Write a classification head for our 15-scene classification task.
 
-        self.head = []
+        self.head = [
+              Conv2D(64, (3, 3), 1, padding="same", activation='leaky_relu'),
+              MaxPool2D(),
+              Conv2D(128, (3, 3), 1, padding="same", activation='leaky_relu'),
+              MaxPool2D(),
+              Flatten(),
+              Dense(128, activation='relu'),
+              Dropout(0.1), 
+              Dense(64, activation='sigmoid'),
+              Dropout(0.1), 
+              Dense(15, activation='softmax')
+        ]
 
         # Don't change the below:
         self.vgg16 = tf.keras.Sequential(self.vgg16, name="vgg_base")
