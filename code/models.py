@@ -155,6 +155,7 @@ class VGGModel(tf.keras.Model):
         # TODO: Make all layers in self.vgg16 non-trainable. This will freeze the
         #       pretrained VGG16 weights into place so that only the classificaiton
         #       head is trained.
+        self.vgg16.layers.trainable = False
 
         # TODO: Write a classification head for our 15-scene classification task.
 
@@ -170,6 +171,8 @@ class VGGModel(tf.keras.Model):
         # Don't change the below:
         self.vgg16 = tf.keras.Sequential(self.vgg16, name="vgg_base")
         self.head = tf.keras.Sequential(self.head, name="vgg_head")
+
+       #  self.vgg16.layers.trainable = False
 
     def call(self, x):
         """ Passes the image through the network. """
